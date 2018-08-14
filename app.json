@@ -1,0 +1,17 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/patient/index",
+    "pages/courier/index",
+    "pages/doctor/index",
+    "pages/visitor/index",
+    "pages/security/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#31a2ff",
+    "navigationBarTitleText": "南方医院",
+    "navigationBarTextStyle": "#2989d9"
+  }
+}

@@ -1,0 +1,58 @@
+/**index.wxss**/
+
+.container .title{
+  color: #353535;
+  margin: 90rpx 0 142rpx;
+  
+}
+.identity_list{
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap:wrap;
+  align-items: center; 
+  text-align: center;
+}
+.identity_list .list{
+  flex: 1;
+  padding-bottom: 142rpx;
+}
+
+.identity_list .identity_img{
+  width: 160rpx;
+  height:160rpx;
+  display: block;
+  margin: 0 45rpx 50rpx;
+}
+.identity_list .identity_name{
+  font-size: 30rpx;
+  color: #353535;
+}
+/* .identity_list  .img_warp{
+  background-color: red；
+}
+.list_active{
+  background-color: red；
+} */
+
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* .userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+} */
