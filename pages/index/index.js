@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    firstEnter:true,
     //身份列表
     identityList:[
       { imgUrl: '../../images/courier.png', 'identity': '住院患者' },

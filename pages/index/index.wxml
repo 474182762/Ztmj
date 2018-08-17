@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" wx:if = '{{firstEnter}}'>
   <text class='title'>请选择您的身份</text>
   <view class='identity_list'>
     <view wx:for="{{identityList}}" class='list' >
@@ -8,6 +8,9 @@
       </view>
       <text class='identity_name'>{{item.identity}}</text>
     </view>
+  </view>
+  <view class="container" wx:if = '{{!firstEnter}}'>
+    <text class='title'>首页</text>
   </view>
   
   <!-- <view class="userinfo">
