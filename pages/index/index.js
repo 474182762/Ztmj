@@ -7,15 +7,22 @@ Page({
     firstEnter:true,
     //身份列表
     identityList:[
-      { imgUrl: '../../images/courier.png', 'identity': '住院患者' },
-      { imgUrl: '../../images/courier.png', 'identity': '访客' },
-      { imgUrl: '../../images/courier.png', 'identity': '医院工作人员' },
-      { imgUrl: '../../images/courier.png', 'identity': '非住院患者' },
-      { imgUrl: '../../images/courier.png', 'identity': '护工' },
-      { imgUrl: '../../images/courier.png', 'identity': '快递/外卖员' }
+        { imgUrl: '../../images/identify2.png', 'identity': '住院患者','id':1 },
+        { imgUrl: '../../images/identify7.png', 'identity': '访客', 'id': 2  },
+        { imgUrl: '../../images/identify1.png', 'identity': '医院工作人员', 'id': 3  },
+        { imgUrl: '../../images/identify3.png', 'identity': '非住院患者','id': 4 },
+        { imgUrl: '../../images/identify5.png', 'identity': '护工','id': 5},
+        { imgUrl: '../../images/identify6.png', 'identity': '快递/外卖员', 'id': 6}
       ],
     motto: 'Hello World',
-    userInfo: {},
+    user: {
+      userImg:'../../images/identify4.png',
+      name:'赵小强',
+      identity:'住院患者'
+    },
+    user_limit:[
+        { img: '../../ images / identify4.png',name:'二维码'}
+      ],
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -52,6 +59,14 @@ Page({
         }
       })
     }
+  },
+  /*选择身份*/
+  selectIdentity:function(e){
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: "/pages/approve/index?id="+id
+    })    
+    console.log(e.currentTarget.dataset.id)
   },
   getUserInfo: function(e) {
     console.log(e)

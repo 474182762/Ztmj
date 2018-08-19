@@ -1,0 +1,38 @@
+/* pages/approve/index.wxss */
+.approve{
+
+}
+.approve .user_img{
+  text-align: center;
+  padding: 60rpx 0;
+  background: #fff;
+  border-bottom:1rpx solid #e1e6ea;
+  margin-bottom: 30rpx;
+}
+.approve .user_img image{
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.approve_info{
+  background: #fff;
+  padding: 0 30rpx;
+}
+.approve_info .info_warp{
+  display: flex;
+  font-size: 32rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  border-bottom: 1rpx solid #e1e6ea;
+}
+.approve_info .info_warp:last-child{
+  border-bottom: none;
+}
+.approve_info .info_warp label{
+  color:#353535;
+  width: 228rpx;
+}
+.approve_info .info_warp input{
+  height: 110rpx;
+  line-height: 110rpx;
+}

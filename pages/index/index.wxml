@@ -1,19 +1,51 @@
 <!--index.wxml-->
+
 <view class="container" wx:if = '{{firstEnter}}'>
   <text class='title'>请选择您的身份</text>
   <view class='identity_list'>
-    <view wx:for="{{identityList}}" class='list' >
-      <view hover-class='list_active' class='img_warp'>
+    <view wx:for="{{identityList}}" class='list' wx:key='index' >
+      <view hover-class='list_active'class='img_warp' data-id = '{{item.id}}' bindtap="selectIdentity">
         <image src='{{item.imgUrl}}' class='identity_img' ></image>
       </view>
       <text class='identity_name'>{{item.identity}}</text>
     </view>
   </view>
-  <view class="container" wx:if = '{{!firstEnter}}'>
-    <text class='title'>首页</text>
+</view>
+<view class="container user_warp" wx:else>
+  <view class='user_info'>
+    <image src='{{user.userImg}}' class='user_img' ></image>
+    <text class='user_name'>姓名：{{user.name}}</text>
+    <text class='user_identity'>身份：{{user.identity}}</text>
   </view>
-  
-  <!-- <view class="userinfo">
+  <view class='user_limit'>
+    <view class='list'>
+      <image src='../../images/identify2.png'></image>
+      <text>二维码</text>
+    </view>
+    <view class='list'>
+      <image src='../../images/identify2.png'></image>
+      <text>二维码</text>
+    </view>
+    <view class='list'>
+      <image src='../../images/identify2.png'></image>
+      <text>二维码</text>
+    </view>
+    <view class='list'>
+      <image src='../../images/identify2.png'></image>
+      <text>二维码</text>
+    </view>
+  </view>
+  <view class='warm_info'>
+    <text class='title'>温馨提示</text>
+    <text class='list'>1.用户首先进行身份认证或者访客申请</text>
+    <text class='list'>2.用户进行身份认证或者访客申请成功后可通过人脸识别进出</text>
+    <text class='list'>3.如何无法通过人脸识别进出闸机，则通过点击下面按钮使用二维码</text>
+  </view>
+   
+</view>
+
+
+<!-- <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
@@ -23,4 +55,3 @@
   <!-- <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view> -->
-</view>

@@ -6,7 +6,8 @@
     "pages/courier/index",
     "pages/doctor/index",
     "pages/visitor/index",
-    "pages/security/index"
+    "pages/security/index",
+    "pages/approve/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
