@@ -1,21 +1,24 @@
-// pages/approve/index.js
+// pages/ambuHelp/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    identityId:6,
+    identityList: [
+      { imgUrl: '../../images/identify2.png', 'identity': '住院患者', 'id': 1 },
+      { imgUrl: '../../images/identify7.png', 'identity': '访客', 'id': 2 },
+      { imgUrl: '../../images/identify5.png', 'identity': '护工', 'id': 5 },
+      { imgUrl: '../../images/identify6.png', 'identity': '快递/外卖员', 'id': 6 },
+      { imgUrl: '../../images/identify4.png', 'identity': '临时专家', 'id': 7 }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (e) {
-    let This = this;
-    This.setData({
-      identityId: e.id,
-    })
+  onLoad: function (options) {
+  
   },
 
   /**

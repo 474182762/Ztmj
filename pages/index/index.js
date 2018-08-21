@@ -5,6 +5,7 @@ const app = getApp()
 Page({
   data: {
     firstEnter:true,
+    userInfo:{},
     //身份列表
     identityList:[
         { imgUrl: '../../images/identify2.png', 'identity': '住院患者','id':1 },
@@ -46,6 +47,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        console.log(res.userInfo)
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -56,9 +58,11 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
+          console.log(res.userInfo)
         }
       })
     }
+    // console.log(this.userInfo)
   },
   /*选择身份*/
   selectIdentity:function(e){

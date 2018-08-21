@@ -1,0 +1,45 @@
+/* pages/ambuHelp/index.wxss */
+
+
+.ambu_help{
+  height: 100%;
+  background-color:#fff;
+  overflow: hidden;
+}
+.ambu_help .title{
+  display: block;
+  color: #353535;
+  margin: 90rpx 0 142rpx;
+  text-align: center;
+  
+}
+.identity_list{
+  width: 100%;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap:wrap;
+  align-items: center;
+  justify-content: space-around;
+}
+.identity_list .list{
+  flex: 1;
+  padding-bottom: 142rpx;
+  text-align: center
+}
+.identity_list .img_warp{
+  /* width: 200rpx; */
+  /* margin: 0 auto; */
+  margin: 0 45rpx 50rpx;
+  
+}
+.identity_list .identity_img{
+  width: 160rpx;
+  height:160rpx;
+}
+.identity_list .identity_name{
+  width: 100%;
+  display: block;
+  font-size: 30rpx;
+  color: #353535;
+  text-align: center;
+}

@@ -1,13 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/patient/index",
-    "pages/courier/index",
-    "pages/doctor/index",
-    "pages/visitor/index",
-    "pages/security/index",
-    "pages/approve/index"
+    "pages/chaperone/chaperone",
+    "pages/doctorHelp/doctor",
+    "pages/ambuHelp/index",
+    "pages/goOtherHome/index",
+    "pages/audit/index",
+    "pages/qrcode/index",
+    "pages/approve/index",
+    "pages/logs/logs"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,43 @@
+/* pages/goOtherHome/index.wxss */
+
+.gohome .gohome_warp{
+  display: block;
+  width: 100%;
+  background: #fff;
+  padding: 0 30rpx;
+}
+.gohome .info_warp{
+  display: flex;
+  font-size: 32rpx;
+  
+  height: 110rpx;
+  line-height: 110rpx;
+  border-bottom: 1rpx solid #e1e6ea;
+}
+.gohome .info_warp:last-child{
+  border-bottom: none;
+}
+.gohome .info_warp label{
+  color:#353535;
+  width: 228rpx;
+}
+.gohome .info_warp input{
+  height: 110rpx;
+  width:100%;
+  line-height: 110rpx;
+  font-size: 32rpx;
+}
+ .gohome .data_btn{
+   width:690rpx;
+   text-align: center;
+   height: 98rpx;
+   line-height: 98rpx;
+  background:#31a2ff;
+  border-radius:8rpx;
+  margin: 110rpx auto 0;
+  
+ }
+.gohome .data_btn text{
+  font-size: 36rpx;
+  color:#fff;
+}

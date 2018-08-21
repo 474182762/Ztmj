@@ -1,0 +1,18 @@
+/* pages/chaperone/chaperone.wxss */
+
+.chaperone{
+  background: #fff;
+}
+.chaperone image{
+  display: block;
+  margin: 0 auto;
+  width: 370rpx;
+  height: 298rpx;
+  padding: 210rpx 0 120rpx;
+}
+.chaperone text{
+  display: block;
+  font-size:16px;
+  color:#313131;
+  text-align: center;
+}

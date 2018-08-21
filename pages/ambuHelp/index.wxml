@@ -1,0 +1,12 @@
+<!--pages/ambuHelp/index.wxml 保安申请帮助-->
+<view class="ambu_help">
+  <text class='title'>请选择您的身份</text>
+  <view class='identity_list'>
+    <view wx:for="{{identityList}}" class='list' wx:key='index' >
+      <view hover-class='list_active'class='img_warp' data-id = '{{item.id}}' bindtap="selectIdentity">
+        <image src='{{item.imgUrl}}' class='identity_img' ></image>
+      </view>
+      <text class='identity_name'>{{item.identity}}</text>
+    </view>
+  </view>
+</view>

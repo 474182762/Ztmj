@@ -1,0 +1,6 @@
+<!--pages/qrcode/index.wxml-->
+
+<view class='qrcode'>
+  <image src='../../images/qrcode.png'></image>
+  <text class='info'>扫一扫过闸机，当天有效</text>
+</view>

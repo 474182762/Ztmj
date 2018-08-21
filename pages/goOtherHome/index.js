@@ -1,21 +1,18 @@
-// pages/approve/index.js
+// pages/goOtherHome/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    identityId:6,
+  
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (e) {
-    let This = this;
-    This.setData({
-      identityId: e.id,
-    })
+  onLoad: function (options) {
+  
   },
 
   /**

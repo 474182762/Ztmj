@@ -13,7 +13,6 @@
   width: 200rpx;
   height: 200rpx;
 }
-
 .approve_info{
   background: #fff;
   padding: 0 30rpx;
@@ -32,7 +31,52 @@
   color:#353535;
   width: 228rpx;
 }
+.approve_info  .friends label{
+  width: 380rpx;
+}
+.approve_info .info_warp .friend_label{
+   width: 380rpx;
+}
 .approve_info .info_warp input{
   height: 110rpx;
+  width:100%;
   line-height: 110rpx;
+  font-size: 32rpx;
+}
+ .approve .data_btn{
+   width:690rpx;
+   text-align: center;
+   height: 98rpx;
+   line-height: 98rpx;
+  background:#31a2ff;
+  border-radius:8rpx;
+  margin: 110rpx auto 0;
+  
+ }
+.approve .data_btn text{
+  font-size: 36rpx;
+  color:#fff;
+}
+/*非住院者*/
+.approve .up_img{
+  padding: 40rpx 30rpx;
+  text-align: left;
+  margin-top:30rpx; 
+}
+.approve .up_img image{
+  width: 150rpx;
+  height: 150rpx;
+  border-bottom: none;
+  margin-right: 30rpx;
+}
+.approve .up_img image:last-child{
+  margin-right: 0;
+}
+
+.approve .info_alert{
+  margin-top: 30rpx;
+  padding: 0 44rpx 0 30rpx;
+  font-size:28rpx;
+  line-height: 1.5;
+  color:#f04223;
 }

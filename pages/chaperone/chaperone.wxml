@@ -1,0 +1,6 @@
+<!--pages/chaperone/chaperone.wxml更换陪护-->
+<view class='chaperone'>
+  <image src='../../images/worker.png'></image>
+  <text>已取消您之前陪护人员的通行权限</text>
+  <text>请通知您新的陪护人员申请认证</text>
+</view>

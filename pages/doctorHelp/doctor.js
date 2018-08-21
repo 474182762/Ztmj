@@ -1,21 +1,21 @@
-// pages/approve/index.js
+// pages/doctorHelp/doctor.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    identityId:6,
+    identityList: [
+      { imgUrl: '../../images/identify7.png', 'identity': '访客', 'id': 2 },
+      { imgUrl: '../../images/identify4.png', 'identity': '临时专家', 'id': 7 }
+    ]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (e) {
-    let This = this;
-    This.setData({
-      identityId: e.id,
-    })
+  onLoad: function (options) {
+  
   },
 
   /**

@@ -1,0 +1,18 @@
+<!--pages/goOtherHome/index.wxml 病人去其他楼栋-->
+<view class='gohome'>
+  <form class='gohome_warp'>
+      <view class='info_warp'>
+        <label>姓名</label>
+        <input name="username" placeholder="请输入您的姓名" />
+      </view>
+      <view class='info_warp'>
+        <label>手机号码</label>
+        <input name="iphone" placeholder="请输入手机号码" />
+      </view>
+      <view class='info_warp'>
+        <label>住院单号</label>
+        <input name="username" placeholder="请输入住院单号" />
+      </view>
+    </form>
+    <view class='data_btn'><text>提交申请</text></view>
+</view>
