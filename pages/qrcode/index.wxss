@@ -1,5 +1,6 @@
 /* pages/qrcode/index.wxss */
 .qrcode{
+  height: 100%;
   text-align: center;
   padding: 110rpx;
   background-color: #fff;
@@ -8,8 +9,10 @@
   width: 540rpx;
   height: 540rpx;
   margin: 0 auto;
+
 }
 .qrcode .info{
+  display: block;
   font-size:16px;
   color:#353535;
   padding-top: 44rpx;

@@ -4,13 +4,13 @@ const app = getApp()
 
 Page({
   data: {
-    firstEnter:true,
+    firstEnter:false,
     userInfo:{},
     //身份列表
     identityList:[
         { imgUrl: '../../images/identify2.png', 'identity': '住院患者','id':1 },
         { imgUrl: '../../images/identify7.png', 'identity': '访客', 'id': 2  },
-        { imgUrl: '../../images/identify1.png', 'identity': '医院工作人员', 'id': 3  },
+      { imgUrl: '../../images/identify1.png', 'identity': '医生/护士', 'id': 3  },
         { imgUrl: '../../images/identify3.png', 'identity': '非住院患者','id': 4 },
         { imgUrl: '../../images/identify5.png', 'identity': '护工','id': 5},
         { imgUrl: '../../images/identify6.png', 'identity': '快递/外卖员', 'id': 6}
@@ -19,13 +19,14 @@ Page({
     user: {
       userImg:'../../images/identify4.png',
       name:'赵小强',
-      identity:'住院患者'
+      identity:'住院患者',
+      id:6
     },
     user_limit:[
         { img: '../../ images / identify4.png',name:'二维码'}
       ],
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    // canIUse: wx.canIUs('button.open-type.getUserInfo')
   },
   //事件处理函数
   bindViewTap: function() {
@@ -34,6 +35,10 @@ Page({
     })
   },
   onLoad: function () {
+    let This = this;
+    if (!This.firstEnter){
+      This.getLimitList()
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -63,6 +68,10 @@ Page({
       })
     }
     // console.log(this.userInfo)
+  },
+  /*权限列表*/
+  getLimitList(){
+
   },
   /*选择身份*/
   selectIdentity:function(e){

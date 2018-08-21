@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/chaperone/chaperone",
-    "pages/doctorHelp/doctor",
-    "pages/ambuHelp/index",
-    "pages/goOtherHome/index",
-    "pages/audit/index",
-    "pages/qrcode/index",
     "pages/approve/index",
+    "pages/qrcode/index",
+    "pages/audit/index",
+    "pages/goOtherHome/index",
+    "pages/ambuHelp/index",
+    "pages/doctorHelp/doctor",
+    "pages/chaperone/chaperone",
     "pages/logs/logs"
     
   ],

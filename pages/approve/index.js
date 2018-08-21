@@ -13,6 +13,9 @@ Page({
    */
   onLoad: function (e) {
     let This = this;
+    wx.setNavigationBarTitle({
+      title: '身份认证',
+    })
     This.setData({
       identityId: e.id,
     })
