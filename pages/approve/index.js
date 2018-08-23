@@ -1,11 +1,20 @@
 // pages/approve/index.js
-Page({
 
+//获取应用实例
+var app = getApp();
+console.log(app.api)
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    identityId:6,
+    identityId:'',
+    patientdata:{
+      username:'',
+      userPhone:'',
+      patientOrder:''
+    }
   },
 
   /**
@@ -20,53 +29,21 @@ Page({
       identityId: e.id,
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  patientSubmit:function(){
+    let This = this;
+    This.formdataSubmit()
   },
+  formdataSubmit(e){
+    let This = this;
+    let data =null;
+    data = e.detail.value
+    data['type']=1
+    data['facePicture'] = '1222'
+    data['userId'] = '033xDyFN0MlD142KblDN0dTJFN0xDyFI'
+    console.log(data)
+    app.api.patientSubmit(data).then((res) => {
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+    })
   }
+
 })

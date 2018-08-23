@@ -15,10 +15,10 @@
 }
 .approve_info{
   background: #fff;
-  padding: 0 30rpx;
 }
 .approve_info .info_warp{
   display: flex;
+  padding: 0 30rpx;
   font-size: 32rpx;
   height: 110rpx;
   line-height: 110rpx;
@@ -43,14 +43,24 @@
   line-height: 110rpx;
   font-size: 32rpx;
 }
- .approve .data_btn{
+.approve  form{
+  display: block;
+}
+.btn_warp{
+  width: 100%;
+  padding-top: 110rpx;
+  background-color: #f1f0f5;
+}
+.approve .data_btn{
    width:690rpx;
    text-align: center;
    height: 98rpx;
+   color: #fff;
    line-height: 98rpx;
   background:#31a2ff;
   border-radius:8rpx;
-  margin: 110rpx auto 0;
+  
+  /* border:none; */
   
  }
 .approve .data_btn text{

@@ -6,19 +6,22 @@
   </view>
   <!---1:住院病人-->
   <view class='approve_info' wx:if='{{identityId==1}}'>
-    <form>
+    <form bindsubmit="formdataSubmit">
       <view class='info_warp'>
         <label>姓名</label>
         <input name="username" placeholder="请输入您的姓名" />
       </view>
       <view class='info_warp'>
         <label>手机号码</label>
-        <input name="iphone" placeholder="请输入手机号码" />
+        <input name="userPhone" placeholder="请输入手机号码" />
       </view>
       <view class='info_warp'>
         <label>住院单号</label>
-        <input name="username" placeholder="请输入住院单号" />
+        <input name="patientOrder" placeholder="请输入住院单号" />
       </view>
+      <view class='btn_warp'><button formType="submit" class='data_btn'>提交审核</button></view>
+      
+      <!-- <view class='data_btn' bindtap='patientSubmit'><text>提交审核</text></view> -->
     </form>
   </view>
   <!---4:非住院患者-->
@@ -154,5 +157,5 @@
   工号；若选择“长期合作“，请带齐工商管理资料到医院
   相关部门登记</text>
   </view>
-  <view class='data_btn'><text>提交审核</text></view>
+  <!-- <view class='data_btn' bindtap='patientSubmit' formType="submit"><text>提交审核</text></view> -->
 </view>

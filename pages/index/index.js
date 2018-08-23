@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    firstEnter:false,
+    firstEnter:true,
     userInfo:{},
     //身份列表
     identityList:[
@@ -36,7 +36,9 @@ Page({
   },
   onLoad: function () {
     let This = this;
-    if (!This.firstEnter){
+    
+    // console.log(This.data.firstEnter)
+    if (!This.data.firstEnter){
       This.getLimitList()
     }
     if (app.globalData.userInfo) {
@@ -63,7 +65,7 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
-          console.log(res.userInfo)
+          // console.log(res.userInfo)
         }
       })
     }
@@ -79,10 +81,9 @@ Page({
     wx.navigateTo({
       url: "/pages/approve/index?id="+id
     })    
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
