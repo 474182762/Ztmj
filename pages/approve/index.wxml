@@ -2,7 +2,7 @@
 <!---1:住院病人，2：访客，3：医院工作人员，4:非住院患者,5:护工,6:快递/外卖员,7:专家/临时专家-->
 <view class = 'approve'>
   <view class='user_img' wx:if='{{identityId==1||identityId==3||identityId==5||identityId==7||identityId==6}}'>
-    <image src='../../images/identify2.png'></image>
+    <image src='../../images/avatar.png'></image>
   </view>
   <!---1:住院病人-->
   <view class='approve_info' wx:if='{{identityId==1}}'>
@@ -17,7 +17,7 @@
       </view>
       <view class='info_warp'>
         <label>住院单号</label>
-        <input name="patientOrder" placeholder="请输入住院单号" />
+        <input name="inpatientnNmber" placeholder="请输入住院单号" />
       </view>
       <view class='btn_warp'><button formType="submit" class='data_btn'>提交审核</button></view>
       
@@ -26,27 +26,34 @@
   </view>
   <!---4:非住院患者-->
    <view class='approve_info' wx:if='{{identityId==4}}'>
-    <form>
+    <form bindsubmit="formNopatientSubmit">
       <view class='info_warp'>
           <label>姓名</label>
-          <input name="username" placeholder="请输入您的姓名" />
+          <input name="userName" placeholder="请输入您的姓名" />
         </view>
         <view class='info_warp'>
           <label>手机号码</label>
-          <input name="iphone" placeholder="请输入手机号码" />
+          <input name="userPhone" placeholder="请输入手机号码" />
         </view>
         <view class='info_warp' >
           <label>检查单号</label>
-          <input name="username" placeholder="请输入检查单号" />
+          <input name="checkOrder" placeholder="请输入检查单号" />
         </view>
         <view class='info_warp friends'>
           <label>是否有随行访客</label>
-          <input name="username" placeholder="请输入住院单号" />
+          <input name="patientFollower" placeholder="请输入住院单号" />
         </view>
         <view class='info_warp' >
           <label>随行人数</label>
-          <input name="username" placeholder="请输入随行人数，最多不超过4人" />
+          <input name="followerNumber" placeholder="请输入随行人数，最多不超过4人" />
         </view>
+        <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
+          <image src='../../images/identify2.png'></image>
+          <image src='../../images/identify2.png'></image>
+          <image src='../../images/identify2.png'></image>
+          <image src='../../images/identify2.png'></image>
+        </view>
+         <view class='btn_warp'><button formType="submit" class='data_btn'>提交审核</button></view>
       </form>
   </view>
    <!---2：访客-->
@@ -72,10 +79,10 @@
   </view>
   <!---3：医院工作人员-->
   <view class='approve_info' wx:if='{{identityId==3}}'>
-    <form>
+    <form bindsubmit="formPersonnelSubmit">
       <view class='info_warp'>
         <label>岗位名称</label>
-        <input name="username" placeholder="请输入您的姓名" />
+        <input name="staffPostName" placeholder="请输入您的姓名" />
       </view>
       <view class='info_warp'>
         <label>姓名</label>
@@ -83,33 +90,34 @@
       </view>
       <view class='info_warp'>
         <label>手机号码</label>
-        <input name="iphone" placeholder="请输入手机号码" />
+        <input name="userName" placeholder="请输入手机号码" />
       </view>
       <view class='info_warp'>
         <label>工号</label>
-        <input name="username" placeholder="请输入工号" />
+        <input name="staffNumber" placeholder="请输入工号" />
       </view>
     </form>
   </view>
   <!---5:护工-->
   <view class='approve_info' wx:if='{{identityId==5}}'>
-    <form>
+    <form bindsubmit="formNursingSubmit">
       <view class='info_warp'>
         <label>姓名</label>
-        <input name="username" placeholder="请输入您的姓名" />
+        <input name="userName" placeholder="请输入您的姓名" />
       </view>
       <view class='info_warp'>
         <label>手机号码</label>
-        <input name="iphone" placeholder="请输入手机号码" />
+        <input name="userPhone" placeholder="请输入手机号码" />
       </view>
       <view class='info_warp'>
         <label>患者姓名</label>
-        <input name="username" placeholder="请输入患者姓名" />
+        <input name="patientName" placeholder="请输入患者姓名" />
       </view>
        <view class='info_warp'>
         <label>患者手环ID</label>
-        <input name="username" placeholder="请输入患者手环ID" />
+        <input name="patientRingId" placeholder="请输入患者手环ID" />
       </view>
+       <view class='btn_warp'><button formType="submit" class='data_btn'>提交审核</button></view>
     </form>
   </view>
   <!---7:专家/临时专家-->
@@ -146,12 +154,12 @@
       </view>
     </form>
   </view>
-  <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
+  <!-- <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
     <image src='../../images/identify2.png'></image>
     <image src='../../images/identify2.png'></image>
     <image src='../../images/identify2.png'></image>
     <image src='../../images/identify2.png'></image>
-  </view>
+  </view> -->
   <view wx:if='{{identityId==6}}' class='info_alert'>
     <text>注：请到保安处进行审核授权，授权后让保安填写保安
   工号；若选择“长期合作“，请带齐工商管理资料到医院

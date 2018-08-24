@@ -2,8 +2,7 @@
 
 //获取应用实例
 var app = getApp();
-console.log(app.api)
-
+// console.log(app.api)
 Page({
   /**
    * 页面的初始数据
@@ -28,22 +27,62 @@ Page({
     This.setData({
       identityId: e.id,
     })
+    console.log(e.id)
   },
   patientSubmit:function(){
     let This = this;
     This.formdataSubmit()
   },
+  /*住院患者*/
   formdataSubmit(e){
     let This = this;
     let data =null;
     data = e.detail.value
     data['type']=1
     data['facePicture'] = '1222'
-    data['userId'] = '033xDyFN0MlD142KblDN0dTJFN0xDyFI'
+    data['userId'] = '22'
+    data['openid'] = '11'
     console.log(data)
     app.api.patientSubmit(data).then((res) => {
 
     })
-  }
+  },
+   /*非住院患者*/
+  formNopatientSubmit(e){
+    let This = this;
+    let data = null;
+    data = e.detail.value;
+    data['type'] = 1;
+    data['patientFollower'] =2;
+    // data['facePicture'] = '1222'
+    data['userId'] = '66';
+    console.log(data)
+    app.api.nopatientSubmit(data).then((res) => {
 
+    })
+  },
+  /*护工身份认证*/
+  formNursingSubmit(e){
+    let This = this;
+    let data = null;
+    data = e.detail.value;
+    data['userId'] = '033xDyFN0MlD142KblDN0N0xDyFI';
+    data['facePicture'] = '1222'
+    console.log(data)
+    app.api.nursingSubmit(data).then((res) => {
+
+    })
+  },
+  /*工作人员认证*/
+  formPersonnelSubmit(e){
+    let This = this;
+    let data = null;
+    data = e.detail.value;
+    data['userId'] = '2';
+    data['facePicture'] = '1222'
+    console.log(data)
+    app.api.nursingSubmit(data).then((res) => {
+
+    })
+  }
 })
