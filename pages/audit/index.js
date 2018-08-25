@@ -1,68 +1,58 @@
 // pages/courier/index.js
-Page({
 
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-    
+    auditInfo:{
+      img: '../../images/remain5.png',
+      info:"正在审核，请稍后...",
+      showQrcode:false
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let This = this;
+    let i=5;
+    let oTimer = null;
+    let imgSrc = null;
     wx.setNavigationBarTitle({
       title: '审核结果',
     })
+    clearInterval(oTimer);
+    oTimer = setInterval(function(){
+      i--;
+      if (i<=0){
+        clearInterval(oTimer);
+        imgSrc = '../../images/approved.png'
+        This.setData({
+          auditInfo: {
+            img: imgSrc,
+            info: "审核成功！",
+            showQrcode: true
+          }
+        })
+        return
+      }
+      imgSrc ='../../images/remain'+i+'.png'
+      This.setData({
+        auditInfo: {
+          img: imgSrc,
+          info: "正在审核，请稍后...",
+          showQrcode: false
+        }
+      })
+    },1000)
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  /*获取二维码*/
+  getQrcode(){
+    wx.navigateTo({
+      url: "/pages/qrcode/index"
+    })
   }
 })

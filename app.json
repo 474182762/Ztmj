@@ -2,8 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/approve/index",
-    "pages/qrcode/index",
     "pages/audit/index",
+    "pages/qrcode/index",
     "pages/goOtherHome/index",
     "pages/ambuHelp/index",
     "pages/doctorHelp/doctor",

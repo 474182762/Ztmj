@@ -1,13 +1,13 @@
 <!--pages/courier/index.wxml-->
 <view class='audit_content'>
   <view class='audit_top'>
-    <image src='../../images/remain5.png'></image>
-    <text class='success'>审核成功！</text>
+    <image src='{{auditInfo.img}}'></image>
+    <text class='success'>{{auditInfo.info}}</text>
   </view>
   <view class='warm_info'>
     <text class='title'>温馨提示</text>
     <text class='list'>1.访客申请提示成功后可通过人脸闸机进出</text>
     <text class='list'>2.如何无法通过人脸识别进出闸机，则通过点击下面按钮使用二维码</text>
   </view>
-  <view class='data_btn'><text>获取二维码</text></view>
+  <view class='data_btn' wx:if="{{auditInfo.showQrcode}}" bindtap='getQrcode'><text>获取二维码</text></view>
 </view>

@@ -1,4 +1,7 @@
 // pages/qrcode/index.js
+
+const app = getApp()
+
 Page({
 
   /**
@@ -12,9 +15,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let This =this;
+    let data = null;
     wx.setNavigationBarTitle({
       title: '二维码',
     })
+    data = {
+      userId: '2323'
+    }
+    app.api.getQrcode(data).then((res) => {
+
+    })
+
   },
 
   /**

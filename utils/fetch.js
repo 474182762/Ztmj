@@ -21,7 +21,7 @@ const checkCode = (resolve, res) => {
         case 404: //服务器异常
             wx.showToast({
                 title: res.message,
-                // image: '/images/others/icon-error.png',
+                // image: '/images/icon-error.png',
                 duration: 3000,
                 mask: true
             });

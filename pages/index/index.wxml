@@ -18,36 +18,36 @@
     <text class='user_identity'>身份：{{user.identity}}</text>
   </view>
   <view class='user_limit' wx:if ='{{user.id==1}}'>
-    <view class='list'>
-      <image src='../../images/catalog1.png'></image>
+    <view class='list' >
+      <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>
     </view>
-    <view class='list'>
-      <image src='../../images/catalog4.png'></image>
+    <view class='list' >
+      <image src='../../images/catalog4.png' bindtap='enterPass'></image>
       <text>通行申请</text>
     </view>
     <view class='list'>
-      <image src='../../images/catalog3.png'></image>
+      <image src='../../images/catalog3.png' bindtap='enterChaperone'></image>
       <text>更换陪护</text>
     </view>
     <view class='list'>
-      <image src='../../images/catalog2.png'></image>
+      <image src='../../images/catalog2.png' bindtap='enterVisitor'></image>
       <text>访客+</text>
     </view>
   </view>
   <view class='user_limit' wx:if ='{{user.id==3}}'>
     <view class='list'>
-      <image src='../../images/catalog1.png'></image>
+      <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>
     </view>
     <view class='list'>
-      <image src='../../images/catalog2.png'></image>
+      <image src='../../images/catalog2.png' bindtap='enterVisitor'></image>
       <text>访客+</text>
     </view>
   </view>
   <view class='user_limit' wx:if ='{{user.id==2||user.id==6}}'>
     <view class='list'>
-      <image src='../../images/catalog1.png'></image>
+      <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>
     </view>
   </view>
