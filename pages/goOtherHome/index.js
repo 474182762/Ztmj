@@ -23,15 +23,17 @@ Page({
     let This = this;
     let data = {};
     data = e.detail.value
-    // data['type'] = 1
-    // data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
+    data['type'] = 2
+    data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
     console.log(data)
-    // wx.navigateTo({
-    //   url:"/pages/audit/index"
-    // })
-    // app.api.patientSubmit(data).then((res) => {
-
-    // })
+    
+    app.api.patientSubmit(data).then((res) => {
+        if(res.code=='200'){
+          wx.navigateTo({
+            url: "/pages/audit/index"
+          })
+        }
+    })
   }
  
 })

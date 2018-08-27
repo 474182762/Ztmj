@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
   data: {
-    firstEnter:false,
+    firstEnter:true,
     userInfo:{},
     //身份列表
     identityList:[
@@ -36,39 +36,39 @@ Page({
   },
   onLoad: function () {
     let This = this;
-    
     // console.log(This.data.firstEnter)
-    if (!This.data.firstEnter){
-      This.getLimitList()
-    }
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-        console.log(res.userInfo)
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-          // console.log(res.userInfo)
-        }
-      })
-    }
+    // if (!This.data.firstEnter){
+    //   This.getLimitList()
+    // }
+
+
+    // if (app.globalData.userInfo) {
+    //   this.setData({
+    //     userInfo: app.globalData.userInfo,
+    //     hasUserInfo: true
+    //   })
+    // } else if (this.data.canIUse){
+    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+    //   // 所以此处加入 callback 以防止这种情况
+    //   app.userInfoReadyCallback = res => {
+    //     this.setData({
+    //       userInfo: res.userInfo,
+    //       hasUserInfo: true
+    //     })
+    //     console.log(res.userInfo)
+    //   }
+    // } else {
+    //   // 在没有 open-type=getUserInfo 版本的兼容处理
+    //   wx.getUserInfo({
+    //     success: res => {
+    //       app.globalData.userInfo = res.userInfo
+    //       this.setData({
+    //         userInfo: res.userInfo,
+    //         hasUserInfo: true
+    //       })
+    //     }
+    //   })
+    // }
     // console.log(this.userInfo)
   },
   /*权限列表*/
@@ -97,15 +97,27 @@ Page({
   },
   /*更换陪护*/
   enterChaperone(){
+    let This = this;
+   
+    
     wx.showModal({
       // title: '温馨提示',
       content: '您确定要更换陪护吗？',
       success: function (res) {
         if (res.confirm) {
-          wx.navigateTo({
-            url: '/pages/chaperone/chaperone'
+          console.log(11)
+          let data = {};
+          data['userId'] = '1221'
+          console.log(data)
+          app.api.changeEscort(data).then((res) => {
+            if (res.code == '200') {
+              wx.navigateTo({
+                url: '/pages/chaperone/chaperone'
+              })
+            }else{
+              console.log(res.message)
+            }
           })
-          console.log('用户点击确定')
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -118,12 +130,18 @@ Page({
       url: "/pages/approve/index?id=" + 2
     })   
   },
-  getUserInfo: function(e) {
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  /*医生申请帮助*/
+  docutorVisitor() {
+    wx.navigateTo({
+      url: "/pages/doctorHelp/doctor"
     })
-    console.log(e.detail.userInfo)
-  }
+  },
+  // getUserInfo: function(e) {
+  //   app.globalData.userInfo = e.detail.userInfo
+  //   this.setData({
+  //     userInfo: e.detail.userInfo,
+  //     hasUserInfo: true
+  //   })
+  //   console.log(e.detail.userInfo)
+  // }
 })

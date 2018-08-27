@@ -22,7 +22,11 @@ Page({
       title: '选择身份',
     })
   },
-
+  selectIdentity(e){
+    wx.navigateTo({
+      url: "/pages/approve/index?id=" + e.currentTarget.dataset.id
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

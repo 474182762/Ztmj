@@ -19,7 +19,18 @@ Page({
       title: '选择身份',
     })
   },
-
+  /*进入访客或者专家*/
+  selectIdentity(e){
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: "/pages/approve/index?id=" + e.currentTarget.dataset.id
+    })
+  },
+  // enterVisitor() {
+  //   wx.navigateTo({
+  //     url: "/pages/approve/index?id=" + 2
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -41,7 +41,7 @@
       <text>二维码</text>
     </view>
     <view class='list'>
-      <image src='../../images/catalog2.png' bindtap='enterVisitor'></image>
+      <image src='../../images/catalog2.png' bindtap='docutorVisitor'></image>
       <text>访客+</text>
     </view>
   </view>

@@ -1,6 +1,6 @@
 <!--pages/goOtherHome/index.wxml 病人去其他楼栋-->
 <view class='gohome'>
-  <form class='gohome_warp' bindtap='gohomeSubmit'>
+  <form class='gohome_warp' bindsubmit='gohomeSubmit'>
       <view class='info_warp'>
         <label>姓名</label>
         <input name="userName" placeholder="请输入您的姓名" />

@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/ambuHelp/index",
     "pages/approve/index",
     "pages/audit/index",
     "pages/qrcode/index",
     "pages/goOtherHome/index",
-    "pages/ambuHelp/index",
     "pages/doctorHelp/doctor",
     "pages/chaperone/chaperone",
     "pages/logs/logs"

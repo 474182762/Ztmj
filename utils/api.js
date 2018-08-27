@@ -65,7 +65,7 @@ const visitorSubmit = (params) => {
   let header = {
     "Content-Type": "application/x-www-form-urlencoded"
   };
-  return fetchApi('authentication / visitor', params, header).then(res => res)
+  return fetchApi('authentication/visitor', params, header).then(res => res)
 };
 
 /*工作人员认证*/
@@ -122,13 +122,13 @@ const getUserinfo = (params) => {
 };
 
 /*图片上传*/
-const uploadImg = (params) => {
-  let header = {
-    "Content-Type": "application/x-www-form-urlencoded"
-  };
-  return fetchApi('hospital/uploadImg', params, header).then(res => res)
-};
-
+// const uploadImg = (params) => {
+//   let header = {
+//     "Content-Type": "application/x-www-form-urlencoded"
+//   };
+//   return fetchApi('hospital/uploadImg', params, header).then(res => res)
+// };
+const uploadImg = `${ API_DOMAIN }/hospital/uploadImg`
 
 module.exports = {
   authLogin,

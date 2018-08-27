@@ -1,7 +1,7 @@
 // pages/qrcode/index.js
 
 const app = getApp()
-
+var QR = require("../../utils/qrcode.js");
 Page({
 
   /**
@@ -24,7 +24,10 @@ Page({
       userId: '2323'
     }
     app.api.getQrcode(data).then((res) => {
+      if (res.code == '200'){
 
+      }
+      
     })
 
   },

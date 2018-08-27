@@ -66,14 +66,48 @@ Page({
     })
   },
   /*点击上传图片*/
-  upImage:function(){
+  upImage(e){
+    let This = this;
+    let maxImg = e.currentTarget.dataset.maximg
     wx.showActionSheet({
       itemList: ['拍摄', '从手机相册选择'],
       success: function (res) {
-        console.log(res.tapIndex)
+        This.upSaveImage(res.tapIndex)
+        // console.log(res.tapIndex, maxImg)
       },
       fail: function (res) {
         console.log(res.errMsg)
+      }
+    })
+  },
+  /*上传图片方法*/
+  upSaveImage(index, maxImg){
+    let This =this;
+    let type = index == 0?'camera':'album';
+    wx.chooseImage({
+      count: maxImg,
+      sourceType: [type], 
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths
+        console.log(tempFilePaths[0])
+        wx.uploadFile({
+          url: app.api.uploadImg, //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          // header:{
+          //   "Content-Type": "application/x-www-form-urlencoded"
+          // },
+          header: {
+            "Content-Type": "multipart/form-data"
+          },
+          name: 'file',
+          // formData: {
+          //   'user': 'test'
+          // },
+          success: function (res) {
+            var data = res.data
+            console.log(data)
+          }
+        })
       }
     })
   },
@@ -90,9 +124,9 @@ Page({
     data['facePicture'] = '1222'
     data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
     console.log(data)
-    // wx.navigateTo({
-    //   url:"/pages/audit/index"
-    // })
+    wx.navigateTo({
+      url:"/pages/audit/index"
+    })
     app.api.patientSubmit(data).then((res) => {
 
     })
@@ -105,10 +139,14 @@ Page({
     data['type'] = 1;
     data['patientFollower'] = This.data.selectaccompany;
     data['facePicture'] = '1222'
-    data['userId'] = '66';
+    data['openid'] = '565656'
     console.log(data)
     app.api.nopatientSubmit(data).then((res) => {
-
+      if(res.code == '200'){
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
     })
   },
   /*护工身份认证*/
@@ -120,7 +158,11 @@ Page({
     data['facePicture'] = '1222'
     console.log(data)
     app.api.nursingSubmit(data).then((res) => {
-
+      if (res.code == '200') {
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
     })
   },
   /*工作人员认证*/
@@ -132,8 +174,12 @@ Page({
     data['facePicture'] = '1222'
     data['staffPostName'] = This.data.workSekect
     console.log(data)
-    app.api.nursingSubmit(data).then((res) => {
-
+    app.api.personnelSubmit(data).then((res) => {
+      if (res.code == '200') {
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
     })
   },
   /*快递、外卖人员认证*/
@@ -145,9 +191,12 @@ Page({
     data['facePicture'] = '1222'
     data['type'] = This.data.expressSelect
     console.log(data)
-
     app.api.expressSubmit(data).then((res) => {
-
+      if (res.code == '200') {
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
     })
   },
   /*访客身份认证*/
@@ -157,11 +206,30 @@ Page({
     data = e.detail.value;
     data['patientFollower'] = This.data.selectaccompany;
     data['facePicture'] = '1222'
-    data['userId'] = '66';
+    data['openid'] = '66';
     console.log(data)
-
     app.api.visitorSubmit(data).then((res) => {
-
+      if (res.code == '200') {
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
+    })
+  },
+  /*临时专家身份认证*/
+  formExpertSubmit(e){
+    let This = this;
+    let data = null;
+    data = e.detail.value;
+    data['facePicture'] = '1222'
+    data['openid'] = '66';
+    console.log(data)
+    app.api.expertSubmit(data).then((res) => {
+      if (res.code == '200') {
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
+      }
     })
   }
 })
