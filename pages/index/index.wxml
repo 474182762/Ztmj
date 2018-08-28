@@ -1,6 +1,7 @@
 <!--index.wxml-->
 
 <view class="container" wx:if = '{{firstEnter}}'>
+<!-- <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button> -->
   <text class='title'>请选择您的身份</text>
   <view class='identity_list'>
     <view wx:for="{{identityList}}" class='list' wx:key='index' >

@@ -24,6 +24,9 @@ Page({
     ],
     selectaccompany:2,
     workSekect:1,
+    userImg:'../../images/avatar.png',
+    visitorImg:[],
+    upBtnHidden:false,
     expressSelect:1,
     patientdata:{
       username:'',
@@ -43,7 +46,6 @@ Page({
     This.setData({
       identityId: e.id,
     })
-    console.log(e.id)
   },
   /*选择是否有跟随人员*/
   radioChange(e){
@@ -72,7 +74,7 @@ Page({
     wx.showActionSheet({
       itemList: ['拍摄', '从手机相册选择'],
       success: function (res) {
-        This.upSaveImage(res.tapIndex)
+        This.upSaveImage(res.tapIndex, maxImg)
         // console.log(res.tapIndex, maxImg)
       },
       fail: function (res) {
@@ -89,25 +91,46 @@ Page({
       sourceType: [type], 
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
-        console.log(tempFilePaths[0])
-        wx.uploadFile({
-          url: app.api.uploadImg, //仅为示例，非真实的接口地址
-          filePath: tempFilePaths[0],
-          // header:{
-          //   "Content-Type": "application/x-www-form-urlencoded"
-          // },
-          header: {
-            "Content-Type": "multipart/form-data"
-          },
-          name: 'file',
-          // formData: {
-          //   'user': 'test'
-          // },
-          success: function (res) {
-            var data = res.data
-            console.log(data)
-          }
-        })
+        for (var i = 0; i < tempFilePaths.length;i++){
+          wx.uploadFile({
+            url: app.api.uploadImg, //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[i],
+            // header:{
+            //   "Content-Type": "application/x-www-form-urlencoded"
+            // },
+            header: {
+              "Content-Type": "multipart/form-data"
+            },
+            name: 'file',
+            // formData: {
+            //   'user': 'test'
+            // },
+            success: function (res) {
+              var data = JSON.parse(res.data);
+              console.log(data)
+              if (data.code == '200') {
+                if (maxImg == 1) {
+                  This.setData({
+                    userImg: data.data.filePath
+                  })
+                }else{
+                  let visitorImg = This.data.visitorImg;
+                  visitorImg.push(data.data.filePath)
+                    This.setData({
+                      visitorImg: visitorImg
+                    })
+                }
+
+              }
+              if (This.data.visitorImg.length>=4){
+                This.setData({
+                  upBtnHidden: true
+                })
+              }
+            }
+          })
+        }
+        
       }
     })
   },
@@ -121,7 +144,7 @@ Page({
     let data =null;
     data = e.detail.value
     data['type']=1
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.userImg
     data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
     console.log(data)
     wx.navigateTo({
@@ -138,7 +161,7 @@ Page({
     data = e.detail.value;
     data['type'] = 1;
     data['patientFollower'] = This.data.selectaccompany;
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.visitorImg
     data['openid'] = '565656'
     console.log(data)
     app.api.nopatientSubmit(data).then((res) => {
@@ -155,7 +178,7 @@ Page({
     let data = null;
     data = e.detail.value;
     data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI';
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.userImg
     console.log(data)
     app.api.nursingSubmit(data).then((res) => {
       if (res.code == '200') {
@@ -171,7 +194,7 @@ Page({
     let data = null;
     data = e.detail.value;
     data['openid'] = '2';
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.userImg
     data['staffPostName'] = This.data.workSekect
     console.log(data)
     app.api.personnelSubmit(data).then((res) => {
@@ -188,7 +211,7 @@ Page({
     let data = null;
     data = e.detail.value;
     data['openid'] = '2';
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.userImg
     data['type'] = This.data.expressSelect
     console.log(data)
     app.api.expressSubmit(data).then((res) => {
@@ -205,7 +228,7 @@ Page({
     let data = null;
     data = e.detail.value;
     data['patientFollower'] = This.data.selectaccompany;
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.visitorImg
     data['openid'] = '66';
     console.log(data)
     app.api.visitorSubmit(data).then((res) => {
@@ -221,7 +244,7 @@ Page({
     let This = this;
     let data = null;
     data = e.detail.value;
-    data['facePicture'] = '1222'
+    data['facePicture'] = This.data.userImg
     data['openid'] = '66';
     console.log(data)
     app.api.expertSubmit(data).then((res) => {

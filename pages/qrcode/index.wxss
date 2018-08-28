@@ -2,18 +2,18 @@
 .qrcode{
   height: 100%;
   text-align: center;
-  padding: 110rpx;
+  /* padding: 110rpx; */
   background-color: #fff;
 }
 .qrcode image{
   width: 540rpx;
   height: 540rpx;
-  margin: 0 auto;
+  margin: 110rpx auto 0;
 
 }
 .qrcode .info{
   display: block;
   font-size:16px;
   color:#353535;
-  padding-top: 44rpx;
+  padding-top: 16rpx;
 }

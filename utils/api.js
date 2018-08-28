@@ -128,7 +128,8 @@ const getUserinfo = (params) => {
 //   };
 //   return fetchApi('hospital/uploadImg', params, header).then(res => res)
 // };
-const uploadImg = `${ API_DOMAIN }/hospital/uploadImg`
+///hospital/uploadImg hospital/photoImg
+const uploadImg = `${API_DOMAIN }/hospital/photoImg`
 
 module.exports = {
   authLogin,

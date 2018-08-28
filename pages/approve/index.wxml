@@ -2,7 +2,8 @@
 <!---1:住院病人，2：访客，3：医院工作人员，4:非住院患者,5:护工,6:快递/外卖员,7:专家/临时专家-->
 <view class = 'approve'>
   <view class='user_img' wx:if='{{identityId==1||identityId==3||identityId==5||identityId==7||identityId==6}}'>
-    <image src='../../images/avatar.png' bindtap='upImage' data-maximg ='1'></image>
+   
+    <image src='{{userImg}}' bindtap='upImage' data-maximg ='1'></image>
   </view>
   <!---1:住院病人-->
   <view class='approve_info' wx:if='{{identityId==1}}'>
@@ -52,10 +53,8 @@
           <input name="followerNumber" placeholder="请输入随行人数，最多不超过4人" />
         </view>
         <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
-          <image src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
-          <!-- <image src='../../images/identify2.png'></image>
-          <image src='../../images/identify2.png'></image>
-          <image src='../../images/identify2.png'></image> -->
+          <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
+          <image src='{{item}}' wx:for="{{visitorImg}}"></image>
         </view>
          <view class='btn_warp'><button formType="submit" class='data_btn'>提交审核</button></view>
       </form>
