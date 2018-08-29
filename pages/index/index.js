@@ -37,12 +37,23 @@ Page({
   onReady() {
     let This = this;
     if (app.globalData.userInfo.roleType){
-      console.log(app.globalData.userInfo.roleType)
       let user ={};
       // user['userImg'] = app.globalData.userInfo.facePicture;
       user['userImg'] ='../../images/identify4.png'
       user['name'] = app.globalData.userInfo.userName;
-      user['identity'] = app.globalData.userInfo.roleName
+      if (app.globalData.userInfo.roleType==3){
+        console.log(app.globalData.userInfo.staff.staffPostName)
+        if (app.globalData.userInfo.staff.staffPostName==1){
+          user['identity'] = '医生'
+        } else if (app.globalData.userInfo.staff.staffPostName == 2){
+          user['identity'] = '护士'
+        }else{
+          user['identity'] = '保安'
+        }
+      }else{
+        user['identity'] = app.globalData.userInfo.roleName
+      }
+      
       user['id'] = app.globalData.userInfo.roleType
       This.setData({
         firstEnter:false,
@@ -75,6 +86,7 @@ Page({
   },
   onLoad: function () {
     let This = this;
+    
     // let userImg = app.globalData.userInfo.avatarUrl
     // This.setData({
     //   user:{

@@ -5,8 +5,8 @@
   <text class='title'>请选择您的身份</text>
   <view class='identity_list'>
     <view wx:for="{{identityList}}" class='list' wx:key='index' >
-      <view hover-class='list_active'class='img_warp' data-id = '{{item.id}}' bindtap="selectIdentity">
-        <image src='{{item.imgUrl}}' class='identity_img' ></image>
+      <view  class='img_warp' hover-class='list_active' data-id = '{{item.id}}' bindtap="selectIdentity">
+        <image src='{{item.imgUrl}}'  class='identity_img' ></image>
       </view>
       <text class='identity_name'>{{item.identity}}</text>
     </view>
@@ -14,7 +14,10 @@
 </view>
 <view class="container user_warp" wx:else>
   <view class='user_info'>
-    <image src='{{user.userImg}}' class='user_img' ></image>
+    <view class='user_img'>
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <!-- <image src='{{user.userImg}}' class='user_img' ></image> -->
     <text class='user_name'>姓名：{{user.name}}</text>
     <text class='user_identity'>身份：{{user.identity}}</text>
   </view>

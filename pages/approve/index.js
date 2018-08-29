@@ -46,6 +46,11 @@ Page({
     This.setData({
       identityId: e.id,
     })
+    // wx.showToast({
+    //   title: '请上传头像',
+    //   icon: 'none',
+    //   duration: 2000
+    // })
   },
   /*选择是否有跟随人员*/
   radioChange(e){
@@ -119,6 +124,7 @@ Page({
                     This.setData({
                       visitorImg: visitorImg
                     })
+                  console.log(This.data.visitorImg)
                 }
 
               }
@@ -252,7 +258,7 @@ Page({
     let data = null;
     data = e.detail.value;
     data['facePicture'] = This.data.userImg
-    data['openid'] = app.globalData.openid;
+    data['userId'] = app.globalData.userInfo.userId;
     console.log(data)
     app.api.expertSubmit(data).then((res) => {
       if (res.code == '200') {
