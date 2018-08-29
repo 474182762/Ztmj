@@ -18,7 +18,7 @@
     <text class='user_name'>姓名：{{user.name}}</text>
     <text class='user_identity'>身份：{{user.identity}}</text>
   </view>
-  <view class='user_limit' wx:if ='{{user.id==1}}'>
+  <view class='user_limit' wx:if ='{{user.id==1||user.id==4}}'>
     <view class='list' >
       <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>
@@ -46,7 +46,7 @@
       <text>访客+</text>
     </view>
   </view>
-  <view class='user_limit' wx:if ='{{user.id==2||user.id==6}}'>
+  <view class='user_limit' wx:if ='{{user.id==2||user.id==6||user.id==5}}'>
     <view class='list'>
       <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>

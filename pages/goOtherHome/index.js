@@ -24,8 +24,8 @@ Page({
     let data = {};
     data = e.detail.value
     data['type'] = 2
-    data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
-    console.log(data)
+    data['openid'] = app.globalData.userInfo.openid
+    console.log(app.globalData)
     
     app.api.patientSubmit(data).then((res) => {
         if(res.code=='200'){

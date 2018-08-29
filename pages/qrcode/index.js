@@ -24,8 +24,9 @@ Page({
     wx.setNavigationBarTitle({
       title: '二维码',
     })
+    console.log(app.globalData)
     data = {
-      userId: '2323'
+      userId: wx.getStorageSync("userInfo").userId
     }
     app.api.getQrcode(data).then((res) => {
       if (res.code == '200'){

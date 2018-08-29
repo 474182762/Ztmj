@@ -1,7 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
-console.log(app.globalData.userInfo)
+// console.log(app.globalData.userInfo)
 Page({
   data: {
     firstEnter:true,
@@ -33,6 +33,45 @@ Page({
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  onReady() {
+    let This = this;
+    if (app.globalData.userInfo.roleType){
+      console.log(app.globalData.userInfo.roleType)
+      let user ={};
+      // user['userImg'] = app.globalData.userInfo.facePicture;
+      user['userImg'] ='../../images/identify4.png'
+      user['name'] = app.globalData.userInfo.userName;
+      user['identity'] = app.globalData.userInfo.roleName
+      user['id'] = app.globalData.userInfo.roleType
+      This.setData({
+        firstEnter:false,
+        user: user
+      })
+      return;
+    }
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          console.log(res);
+          //用户授权登录模块1.接收用户信息
+          let params = {
+            code: res.code
+          };
+          app.api.authLogin(params).then(res => {
+            // wx.setStorageSync('userId', res.content.userId || '');
+            // wx.setStorageSync('userInfo_status', res.content.userInfo_status || 1);
+            wx.setStorageSync('openid', res.openid || '');
+            app.globalData.openid = res.openid;
+          });
+        } else {
+          console.log(res);
+        }
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    });
   },
   onLoad: function () {
     let This = this;
@@ -83,7 +122,7 @@ Page({
         if (res.confirm) {
           console.log(11)
           let data = {};
-          data['userId'] = '1221'
+          data['userId'] = app.globalData.userInfo.userId
           console.log(data)
           app.api.changeEscort(data).then((res) => {
             if (res.code == '200') {

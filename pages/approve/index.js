@@ -145,13 +145,15 @@ Page({
     data = e.detail.value
     data['type']=1
     data['facePicture'] = This.data.userImg
-    data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI'
+    data['openid'] = app.globalData.openid
     console.log(data)
     wx.navigateTo({
       url:"/pages/audit/index"
     })
     app.api.patientSubmit(data).then((res) => {
-
+      if(res.code=='200'){
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
+      }
     })
   },
    /*非住院患者*/
@@ -162,10 +164,11 @@ Page({
     data['type'] = 1;
     data['patientFollower'] = This.data.selectaccompany;
     data['facePicture'] = This.data.visitorImg
-    data['openid'] = '565656'
+    data['openid'] = app.globalData.openid
     console.log(data)
     app.api.nopatientSubmit(data).then((res) => {
       if(res.code == '200'){
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })
@@ -177,11 +180,12 @@ Page({
     let This = this;
     let data = null;
     data = e.detail.value;
-    data['openid'] = '033xDyFN0MlD142KblDN0N0xDyFI';
+    data['openid'] = app.globalData.openid;
     data['facePicture'] = This.data.userImg
     console.log(data)
     app.api.nursingSubmit(data).then((res) => {
       if (res.code == '200') {
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })
@@ -193,12 +197,13 @@ Page({
     let This = this;
     let data = null;
     data = e.detail.value;
-    data['openid'] = '2';
+    data['openid'] = app.globalData.openid;
     data['facePicture'] = This.data.userImg
     data['staffPostName'] = This.data.workSekect
     console.log(data)
     app.api.personnelSubmit(data).then((res) => {
       if (res.code == '200') {
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })
@@ -210,12 +215,13 @@ Page({
     let This = this;
     let data = null;
     data = e.detail.value;
-    data['openid'] = '2';
+    data['openid'] = app.globalData.openid;
     data['facePicture'] = This.data.userImg
     data['type'] = This.data.expressSelect
     console.log(data)
     app.api.expressSubmit(data).then((res) => {
       if (res.code == '200') {
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })
@@ -229,10 +235,11 @@ Page({
     data = e.detail.value;
     data['patientFollower'] = This.data.selectaccompany;
     data['facePicture'] = This.data.visitorImg
-    data['openid'] = '66';
+    data['openid'] = app.globalData.openid;
     console.log(data)
     app.api.visitorSubmit(data).then((res) => {
       if (res.code == '200') {
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })
@@ -245,10 +252,11 @@ Page({
     let data = null;
     data = e.detail.value;
     data['facePicture'] = This.data.userImg
-    data['openid'] = '66';
+    data['openid'] = app.globalData.openid;
     console.log(data)
     app.api.expertSubmit(data).then((res) => {
       if (res.code == '200') {
+        wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
         })

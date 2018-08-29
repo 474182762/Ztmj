@@ -35,9 +35,8 @@ const authLogin = (params) => {
     let header = {
         "Content-Type": "application/x-www-form-urlencoded"
     };
-    return fetchApi('wechat/authLogin', params, header).then(res => res)
+  return fetchApi('login/getSessionKeyOropenid', params, header).then(res => res)
 };
-
 const getUserInfo = (params) => {
     let header = {
         "Content-Type": "application/x-www-form-urlencoded"
