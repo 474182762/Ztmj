@@ -10,8 +10,8 @@ Page({
   data: {
     identityId:'',
     accompany:[
-      { name: '2', value: '否',checked: 'true'},
-      { name: '1', value: '是'},
+      { name: '2', value: '否'},
+      { name: '1', value: '是',checked: 'true'},
     ],
     workName:[
       { name: '1', value: '医生', checked: 'true' },
@@ -22,9 +22,10 @@ Page({
       { name: '1', value: '临时进入', checked: 'true' },
       { name: '2', value: '长期合作' }
     ],
-    selectaccompany:2,
+    selectaccompany:1,
     workSekect:1,
     userImg:'../../images/avatar.png',
+    upImgStatu:false,
     visitorImg:[],
     upBtnHidden:false,
     expressSelect:1,
@@ -58,7 +59,7 @@ Page({
     This.setData({
       selectaccompany: e.detail.value
     })
-    // console.log('radio发生change事件，携带value值为：', e.detail.value)
+    console.log('radio发生change事件，携带value值为：', e.detail.value)
   },
   workChange(e){
     let This = this;
@@ -116,7 +117,8 @@ Page({
               if (data.code == '200') {
                 if (maxImg == 1) {
                   This.setData({
-                    userImg: data.data.filePath
+                    userImg: data.data.filePath,
+                    upImgStatu:true
                   })
                 }else{
                   let visitorImg = This.data.visitorImg;
@@ -153,11 +155,43 @@ Page({
     data['facePicture'] = This.data.userImg
     data['openid'] = app.globalData.openid
     console.log(data)
-    wx.navigateTo({
-      url:"/pages/audit/index"
-    })
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName){
+      wx.showToast({
+        title: '请输入姓名',
+        icon:'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)){
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.patientOrder){
+      wx.showToast({
+        title: '住院单号错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.patientSubmit(data).then((res) => {
       if(res.code=='200'){
+        wx.navigateTo({
+          url: "/pages/audit/index"
+        })
         wx.setStorageSync('userInfo', res.data.userInfo || '');
       }
     })
@@ -172,6 +206,46 @@ Page({
     data['facePicture'] = This.data.visitorImg
     data['openid'] = app.globalData.openid
     console.log(data)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)) {
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.checkorder) {
+      wx.showToast({
+        title: '检查单号错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (data.followerNumber>4) {
+      wx.showToast({
+        title: '随行人员最多4人',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.nopatientSubmit(data).then((res) => {
       if(res.code == '200'){
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -188,7 +262,47 @@ Page({
     data = e.detail.value;
     data['openid'] = app.globalData.openid;
     data['facePicture'] = This.data.userImg
-    console.log(data)
+    console.log(This.data.userImg)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)) {
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.patientName) {
+      wx.showToast({
+        title: '请输入患者姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.patientRingId) {
+      wx.showToast({
+        title: '请输入患者手环ID',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu){
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.nursingSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -207,6 +321,38 @@ Page({
     data['facePicture'] = This.data.userImg
     data['staffPostName'] = This.data.workSekect
     console.log(data)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)) {
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.staffNumber) {
+      wx.showToast({
+        title: '请输入工号',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.personnelSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -225,6 +371,46 @@ Page({
     data['facePicture'] = This.data.userImg
     data['type'] = This.data.expressSelect
     console.log(data)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)) {
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.businessName) {
+      wx.showToast({
+        title: '请输商家名称',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.staffNumber) {
+      wx.showToast({
+        title: '请输入保安工号',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.expressSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -243,6 +429,54 @@ Page({
     data['facePicture'] = This.data.visitorImg
     data['openid'] = app.globalData.openid;
     console.log(data)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.patientsName) {
+      wx.showToast({
+        title: '请输入被访人姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.patientsPhone)) {
+      wx.showToast({
+        title: '被访人电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入访客姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.userPhone) {
+      wx.showToast({
+        title: '请输入访客电话',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (data.followerNumber > 4) {
+      wx.showToast({
+        title: '随行人员最多4人',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.visitorSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -260,6 +494,30 @@ Page({
     data['facePicture'] = This.data.userImg
     data['userId'] = app.globalData.userInfo.userId;
     console.log(data)
+    let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (!data.userName) {
+      wx.showToast({
+        title: '请输入姓名',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!myreg.test(data.userPhone)) {
+      wx.showToast({
+        title: '电话号码错误',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if (!data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+    }
     app.api.expertSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');

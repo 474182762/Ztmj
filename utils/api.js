@@ -13,7 +13,7 @@ import { API_DOMAIN } from './config'
  * @param {object} header [header={}]
  */
 const fetchApi = (action, params = {}, header = {}) => {
-    return fetch('POST', `${API_DOMAIN}/${action}`, params, header)
+  return fetch('POST', `${API_DOMAIN}/hs/${action}`, params, header)
 };
 
 /**
@@ -22,7 +22,7 @@ const fetchApi = (action, params = {}, header = {}) => {
  * @param {object} header [header={}]
  */
 const fetchGetApi = (action, params = {}, header = {}) => {
-    return fetch('GET', `${API_DOMAIN}/${action}?`, params, header)
+  return fetch('GET', `${API_DOMAIN}/hs/${action}?`, params, header)
 };
 
 /**
@@ -128,8 +128,18 @@ const getUserinfo = (params) => {
 //   return fetchApi('hospital/uploadImg', params, header).then(res => res)
 // };
 ///hospital/uploadImg hospital/photoImg
-const uploadImg = `${API_DOMAIN }/hospital/photoImg`
-
+const uploadImg = `${API_DOMAIN }/hs/hospital/photoImg`
+/*数据为空判断*/
+// const dataNull = (objval,content)=>{
+//   if (!objval) {
+//     wx.showToast({
+//       title: content,
+//       icon: 'none',
+//       duration: 2000
+//     })
+//   }
+//   return
+// }
 module.exports = {
   authLogin,
   getUserInfo,
