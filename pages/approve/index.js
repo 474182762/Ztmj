@@ -10,8 +10,8 @@ Page({
   data: {
     identityId:'',
     accompany:[
-      { name: '2', value: '否'},
-      { name: '1', value: '是',checked: 'true'},
+      { name: '2', value: '否', checked: 'true'},
+      { name: '1', value: '是'}
     ],
     workName:[
       { name: '1', value: '医生', checked: 'true' },
@@ -22,7 +22,7 @@ Page({
       { name: '1', value: '临时进入', checked: 'true' },
       { name: '2', value: '长期合作' }
     ],
-    selectaccompany:1,
+    selectaccompany:2,
     workSekect:1,
     userImg:'../../images/avatar.png',
     upImgStatu:false,
@@ -124,7 +124,8 @@ Page({
                   let visitorImg = This.data.visitorImg;
                   visitorImg.push(data.data.filePath)
                     This.setData({
-                      visitorImg: visitorImg
+                      visitorImg: visitorImg,
+                      upImgStatu: true
                     })
                   console.log(This.data.visitorImg)
                 }
@@ -180,12 +181,13 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
+    if (!This.data.upImgStatu) {
       wx.showToast({
         title: '请上传头像',
         icon: 'none',
         duration: 2000
       })
+      return
     }
     app.api.patientSubmit(data).then((res) => {
       if(res.code=='200'){
@@ -239,12 +241,24 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
-      wx.showToast({
-        title: '请上传头像',
-        icon: 'none',
-        duration: 2000
-      })
+    if (data.patientFollower==1){
+
+      if (!This.data.upImgStatu) {
+        wx.showToast({
+          title: '请上传头像',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+      if (data.facePicture.length != data.followerNumber) {
+        wx.showToast({
+          title: '头像数与随行人员数不一致',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
     }
     app.api.nopatientSubmit(data).then((res) => {
       if(res.code == '200'){
@@ -296,12 +310,13 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu){
+    if (!This.data.upImgStatu){
       wx.showToast({
         title: '请上传头像',
         icon: 'none',
         duration: 2000
       })
+      return
     }
     app.api.nursingSubmit(data).then((res) => {
       if (res.code == '200') {
@@ -346,7 +361,7 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
+    if (!This.data.upImgStatu) {
       wx.showToast({
         title: '请上传头像',
         icon: 'none',
@@ -404,7 +419,7 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
+    if (!This.data.upImgStatu) {
       wx.showToast({
         title: '请上传头像',
         icon: 'none',
@@ -470,13 +485,27 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
-      wx.showToast({
-        title: '请上传头像',
-        icon: 'none',
-        duration: 2000
-      })
+   
+    if (data.patientFollower == 1) {
+      if (!This.data.upImgStatu) {
+        wx.showToast({
+          title: '请上传随行人员头像',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+      console.log(data.facePicture.length, data.followerNumber)
+      if (data.facePicture.length != data.followerNumber) {
+        wx.showToast({
+          title: '头像数与随行人员数不一致',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
     }
+    
     app.api.visitorSubmit(data).then((res) => {
       if (res.code == '200') {
         wx.setStorageSync('userInfo', res.data.userInfo || '');
@@ -511,7 +540,7 @@ Page({
       })
       return
     }
-    if (!data.upImgStatu) {
+    if (!This.data.upImgStatu) {
       wx.showToast({
         title: '请上传头像',
         icon: 'none',

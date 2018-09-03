@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/qrcode/index",
     "pages/ambuHelp/index",
+    "pages/qrcode/index",
     "pages/approve/index",
     "pages/audit/index",
     "pages/goOtherHome/index",

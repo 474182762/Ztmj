@@ -23,6 +23,7 @@ Page({
     })
   },
   selectIdentity(e){
+    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: "/pages/approve/index?id=" + e.currentTarget.dataset.id
     })

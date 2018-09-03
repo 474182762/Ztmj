@@ -48,14 +48,17 @@
             </radio>
           </radio-group>
         </view>
-        <view class='info_warp'>
+        <view class='info_warp' wx:if='{{selectaccompany==1}}'>
           <label>随行人数</label>
           <input name="followerNumber" type="number" placeholder="请输入随行人数，最多不超过4人" />
         </view>
-        <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
-          <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
-          <image src='{{item}}' wx:for="{{visitorImg}}"></image>
+        <view wx:if='{{selectaccompany==1}}'>
+          <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
+            <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
+            <image src='{{item}}' wx:for="{{visitorImg}}"></image>
+          </view>
         </view>
+       
          <view class='btn_warp'><button formType="submit" class='data_btn'>申请认证</button></view>
       </form>
   </view>
@@ -86,18 +89,15 @@
             </radio>
           </radio-group>
         </view>
-        <view class='info_warp last' >
+        <view class='info_warp last' wx:if='{{selectaccompany==1}}'>
           <label>随行人数</label>
           <input name="followerNumber" type="number" placeholder="请输入随行人数，最多不超过4人" />
         </view>
-        <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
+        <view wx:if='{{selectaccompany==1}}'>
+            <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
           <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
           <image src='{{item}}' wx:for="{{visitorImg}}"></image>
-          <!-- <image src='../../images/identify2.png'></image>
-          <image src='../../images/identify2.png'></image>
-          <image src='../../images/identify2.png'></image> -->
         </view>
-        <view class=''>
         </view>
         <view class='btn_warp'><button formType="submit" class='data_btn'>申请认证</button></view>
     </form>

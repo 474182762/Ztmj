@@ -141,8 +141,12 @@ Page({
               wx.navigateTo({
                 url: '/pages/chaperone/chaperone'
               })
-            }else{
-              console.log(res.message)
+            }else{ 
+              wx.showToast({
+                title: res.message,
+                icon: 'none',
+                duration: 2000
+              })
             }
           })
         } else if (res.cancel) {
@@ -159,9 +163,17 @@ Page({
   },
   /*医生申请帮助*/
   docutorVisitor() {
-    wx.navigateTo({
-      url: "/pages/doctorHelp/doctor"
-    })
+    console.log(app.globalData.userInfo)
+    if (app.globalData.userInfo.staff.staffPostName==3){
+      wx.navigateTo({
+        url: "/pages/ambuHelp/index"
+      })
+    }else{
+      wx.navigateTo({
+        url: "/pages/doctorHelp/doctor"
+      })
+    }
+    
   },
   // getUserInfo: function(e) {
   //   app.globalData.userInfo = e.detail.userInfo

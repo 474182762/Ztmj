@@ -111,11 +111,11 @@
 .radio-group .wx-radio-input{
   /* width: 32rpx !important;
   height: 32rxp !important; */
-  background-color: #31a2ff;
-  border: none;
+  /* background-color: #31a2ff; */
+  border:1px solid #acb3b3;
 }
 .radio-group .wx-radio-input.wx-radio-input-checked{
-  border: none;
+  border:1px solid #31a2ff;
   background-color: #31a2ff !important;
 }
 .work_group .radio{
