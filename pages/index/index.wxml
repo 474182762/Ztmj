@@ -20,6 +20,7 @@
     <!-- <image src='{{user.userImg}}' class='user_img' ></image> -->
     <text class='user_name'>姓名：{{user.name}}</text>
     <text class='user_identity'>身份：{{user.identity}}</text>
+    <!-- <text class='user_identity user_time'wx-if='{{user.id==2||user.id==7}}'>通行时间：{{user.expiryTime}}</text> -->
   </view>
   <view class='user_limit' wx:if ='{{user.id==1||user.id==4}}'>
     <view class='list' >

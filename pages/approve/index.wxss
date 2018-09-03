@@ -74,7 +74,7 @@
 /*非住院者*/
 .approve .up_img{
   margin-top: 16rpx;
-  padding: 40rpx 30rpx;
+  padding:40rpx 0 40rpx 30rpx;
   text-align: left;
   margin-top:30rpx;
   /* background-color:#f1f0f5;  */

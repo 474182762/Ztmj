@@ -77,6 +77,11 @@ Page({
   upImage(e){
     let This = this;
     let maxImg = e.currentTarget.dataset.maximg
+    if (This.data.identityId == 2 || This.data.identityId == 4){
+      if (This.data.selectaccompany == 2) {
+        maxImg = 1
+      }
+    }
     wx.showActionSheet({
       itemList: ['拍摄', '从手机相册选择'],
       success: function (res) {
@@ -116,10 +121,23 @@ Page({
               console.log(data)
               if (data.code == '200') {
                 if (maxImg == 1) {
-                  This.setData({
-                    userImg: data.data.filePath,
-                    upImgStatu:true
-                  })
+                  console.log(maxImg)
+                  if (This.data.identityId == 2 || This.data.identityId == 4){
+                    if (This.data.selectaccompany == 2) {
+                      let visitorImg = This.data.visitorImg;
+                      visitorImg.push(data.data.filePath)
+                      This.setData({
+                        visitorImg: visitorImg,
+                        upImgStatu: true,
+                        upBtnHidden: true
+                      })
+                    } 
+                  }else{
+                    This.setData({
+                      userImg: data.data.filePath,
+                      upImgStatu: true
+                    })
+                  }
                 }else{
                   let visitorImg = This.data.visitorImg;
                   visitorImg.push(data.data.filePath)
@@ -131,7 +149,7 @@ Page({
                 }
 
               }
-              if (This.data.visitorImg.length>=4){
+              if (This.data.visitorImg.length>=5){
                 This.setData({
                   upBtnHidden: true
                 })
@@ -477,7 +495,7 @@ Page({
       })
       return
     }
-    if (data.followerNumber > 4) {
+    if (data.followerNumber > 5) {
       wx.showToast({
         title: '随行人员最多4人',
         icon: 'none',
@@ -499,6 +517,15 @@ Page({
       if (data.facePicture.length != data.followerNumber) {
         wx.showToast({
           title: '头像数与随行人员数不一致',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+    }else{
+      if (!data.facePicture.length) {
+        wx.showToast({
+          title: '请上传头像',
           icon: 'none',
           duration: 2000
         })

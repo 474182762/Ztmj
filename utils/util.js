@@ -14,6 +14,17 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const formatDateTime=(timeStamp)=>{
+  var date = new Date();
+  date.setTime(timeStamp);
+  var y = date.getFullYear();
+  var m = date.getMonth() + 1;
+  m = m < 10 ? ('0' + m) : m;
+  var d = date.getDate();
+  d = d < 10 ? ('0' + d) : d;
+  return y + '-' + m + '-' + d;
+};
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatDateTime:formatDateTime
 }

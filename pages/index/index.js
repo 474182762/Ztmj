@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp()
+import { formatDateTime} from '../../utils/util'
 // console.log(app.globalData.userInfo)
 Page({
   data: {
@@ -20,6 +21,7 @@ Page({
       userImg:'../../images/identify4.png',
       name:'赵小强',
       identity:'住院患者',
+      expiryTime:'',
       id:1
     },
     user_limit:[
@@ -53,8 +55,8 @@ Page({
       }else{
         user['identity'] = app.globalData.userInfo.roleName
       }
-      
       user['id'] = app.globalData.userInfo.roleType
+      user['expiryTime'] = formatDateTime(app.globalData.userInfo.expiryTime)
       This.setData({
         firstEnter:false,
         user: user
