@@ -89,6 +89,11 @@ Page({
       urls: [img] // 需要预览的图片http链接列表
     })
   },
+  backIndex:function(){
+    wx.navigateTo({
+      url: "/pages/index/index"
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

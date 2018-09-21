@@ -4,5 +4,6 @@
   <!-- <image src='../../images/qrcode.png'></image> -->
   <image src='{{imagePath}}'></image>
   <text class='info'>扫一扫过闸机，当天有效</text>
+  <button class='back_btn' bindtap='backIndex'>返回首页</button>
 </view>
 <canvas  hidden="{{canvasHidden}}" style="width: 720rpx;height: 720rpx;background:#f1f1f1;" canvas-id="mycanvas"/>

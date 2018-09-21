@@ -17,3 +17,13 @@
   color:#353535;
   padding-top: 16rpx;
 }
+.qrcode .back_btn{
+  width:690rpx;
+  text-align: center;
+  height: 98rpx;
+  color: #fff;
+  line-height: 98rpx;
+  background:#31a2ff;
+  border-radius:8rpx;
+  margin-top: 120rpx;
+}

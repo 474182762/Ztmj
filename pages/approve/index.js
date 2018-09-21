@@ -57,7 +57,10 @@ Page({
   radioChange(e){
     let This = this;
     This.setData({
-      selectaccompany: e.detail.value
+      selectaccompany: e.detail.value,
+      visitorImg:[],
+      upImgStatu:false,
+      upBtnHidden:false
     })
     console.log('radio发生change事件，携带value值为：', e.detail.value)
   },
@@ -269,9 +272,17 @@ Page({
         })
         return
       }
-      if (data.facePicture.length != data.followerNumber) {
+      if (data.facePicture.length > 5) {
         wx.showToast({
-          title: '头像数与随行人员数不一致',
+          title: '最多上传5张',
+          icon: 'none',
+          duration: 2000
+        })
+        return
+      }
+      if (data.facePicture.length - 1 != data.followerNumber) {
+        wx.showToast({
+          title: '请上传患者和随行人数头像',
           icon: 'none',
           duration: 2000
         })
@@ -385,6 +396,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
+      return
     }
     app.api.personnelSubmit(data).then((res) => {
       if (res.code == '200') {
@@ -443,6 +455,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
+      return
     }
     app.api.expressSubmit(data).then((res) => {
       if (res.code == '200') {
@@ -495,7 +508,7 @@ Page({
       })
       return
     }
-    if (data.followerNumber > 5) {
+    if (data.followerNumber > 4) {
       wx.showToast({
         title: '随行人员最多4人',
         icon: 'none',
@@ -514,9 +527,9 @@ Page({
         return
       }
       console.log(data.facePicture.length, data.followerNumber)
-      if (data.facePicture.length != data.followerNumber) {
+      if (data.facePicture.length-1 != data.followerNumber) {
         wx.showToast({
-          title: '头像数与随行人员数不一致',
+          title: '请上传访客和随行人数头像',
           icon: 'none',
           duration: 2000
         })
@@ -573,6 +586,7 @@ Page({
         icon: 'none',
         duration: 2000
       })
+      return
     }
     app.api.expertSubmit(data).then((res) => {
       if (res.code == '200') {

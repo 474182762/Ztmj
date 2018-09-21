@@ -37,11 +37,19 @@ const authLogin = (params) => {
     };
   return fetchApi('login/getSessionKeyOropenid', params, header).then(res => res)
 };
-const getUserInfo = (params) => {
-    let header = {
-        "Content-Type": "application/x-www-form-urlencoded"
-    };
-    return fetchApi('wechat/getUserInfo', params, header).then(res => res)
+// const getUserInfo = (params) => {
+//     let header = {
+//         "Content-Type": "application/x-www-form-urlencoded"
+//     };
+//     return fetchApi('wechat/getUserInfo', params, header).then(res => res)
+// };
+
+/*查询用户个人信息*/
+const getUserinfo = (params) => {
+  let header = {
+    "Content-Type": "application/x-www-form-urlencoded"
+  };
+  return fetchApi('hospital/userinfo', params, header).then(res => res)
 };
 
 /*住院患者身份认证*/
@@ -112,14 +120,6 @@ const changeEscort = (params) => {
   return fetchApi('hospital/escort', params, header).then(res => res)
 };
 
-/*查询用户个人信息*/
-const getUserinfo = (params) => {
-  let header = {
-    "Content-Type": "application/x-www-form-urlencoded"
-  };
-  return fetchApi('hospital/userinfo', params, header).then(res => res)
-};
-
 /*图片上传*/
 // const uploadImg = (params) => {
 //   let header = {
@@ -142,7 +142,6 @@ const uploadImg = `${API_DOMAIN }/hs/hospital/photoImg`
 // }
 module.exports = {
   authLogin,
-  getUserInfo,
   patientSubmit,
   nopatientSubmit,
   visitorSubmit,

@@ -31,38 +31,13 @@ Page({
     // canIUse: wx.canIUs('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
+  // bindViewTap: function() {
+  //   wx.navigateTo({
+  //     url: '../logs/logs'
+  //   })
+  // },
   onReady() {
     let This = this;
-    if (app.globalData.userInfo.roleType){
-      let user ={};
-      // user['userImg'] = app.globalData.userInfo.facePicture;
-      user['userImg'] ='../../images/identify4.png'
-      user['name'] = app.globalData.userInfo.userName;
-      if (app.globalData.userInfo.roleType==3){
-        console.log(app.globalData.userInfo.staff.staffPostName)
-        if (app.globalData.userInfo.staff.staffPostName==1){
-          user['identity'] = '医生'
-        } else if (app.globalData.userInfo.staff.staffPostName == 2){
-          user['identity'] = '护士'
-        }else{
-          user['identity'] = '保安'
-        }
-      }else{
-        user['identity'] = app.globalData.userInfo.roleName
-      }
-      user['id'] = app.globalData.userInfo.roleType
-      user['expiryTime'] = formatDateTime(app.globalData.userInfo.expiryTime)
-      This.setData({
-        firstEnter:false,
-        user: user
-      })
-      return;
-    }
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -76,6 +51,7 @@ Page({
             // wx.setStorageSync('userInfo_status', res.content.userInfo_status || 1);
             wx.setStorageSync('openid', res.openid || '');
             app.globalData.openid = res.openid;
+            This.searchUserInfo(res.openid)
           });
         } else {
           console.log(res);
@@ -86,18 +62,44 @@ Page({
       }
     });
   },
+  /*查询用户信息*/
+  searchUserInfo(openid){
+    let data={
+      openid:openid
+    }
+    app.api.getUserinfo(data).then((res) => {
+        if(!res.data.length){
+          wx.removeStorageSync("userInfo")
+        }
+    })
+  },
   onLoad: function () {
     let This = this;
-    
-    // let userImg = app.globalData.userInfo.avatarUrl
-    // This.setData({
-    //   user:{
-    //     userImg: userImg,
-    //     name: '赵小强',
-    //     identity: '住院患者',
-    //     id: 1
-    //   }
-    // })
+    if (wx.getStorageSync("userInfo").roleType) {
+      let user = {};
+      // user['userImg'] = app.globalData.userInfo.facePicture;
+      user['userImg'] = '../../images/identify4.png'
+      user['name'] = wx.getStorageSync("userInfo").userName;
+      if (wx.getStorageSync("userInfo").roleType == 3) {
+        console.log(app.globalData.userInfo.staff.staffPostName)
+        if (wx.getStorageSync("userInfo").staff.staffPostName == 1) {
+          user['identity'] = '医生'
+        } else if (wx.getStorageSync("userInfo").staff.staffPostName == 2) {
+          user['identity'] = '护士'
+        } else {
+          user['identity'] = '保安'
+        }
+      } else {
+        user['identity'] = wx.getStorageSync("userInfo").roleName
+      }
+      user['id'] = wx.getStorageSync("userInfo").roleType
+      user['expiryTime'] = formatDateTime(wx.getStorageSync("userInfo").expiryTime)
+      This.setData({
+        firstEnter: false,
+        user: user
+      })
+      return;
+    }
 
   },
   /*权限列表*/

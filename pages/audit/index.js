@@ -7,12 +7,12 @@ Page({
    */
   data: {
     auditInfo:{
-      img: '../../images/remain5.png',
+      img: '',
       info:"正在审核，请稍后...",
       showQrcode:false
-    }
+    },
+    imgshow:5,
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -29,20 +29,18 @@ Page({
       i--;
       if (i<=0){
         clearInterval(oTimer);
-        imgSrc = '../../images/approved.png'
         This.setData({
+          imgshow: i,
           auditInfo: {
-            img: imgSrc,
             info: "审核成功！",
             showQrcode: true
           }
         })
         return
       }
-      imgSrc ='../../images/remain'+i+'.png'
       This.setData({
+        imgshow: i,
         auditInfo: {
-          img: imgSrc,
           info: "正在审核，请稍后...",
           showQrcode: false
         }

@@ -1,7 +1,13 @@
 <!--pages/courier/index.wxml-->
 <view class='audit_content'>
   <view class='audit_top'>
-    <image src='{{auditInfo.img}}'></image>
+    <!-- <image src='{{auditInfo.img}}' bindload ='imgSuccess'></image> -->
+    <image hidden='{{imgshow!=5}}' src='../../images/remain5.png'></image>
+    <image hidden='{{imgshow!=4}}' src='../../images/remain4.png'></image>
+    <image hidden='{{imgshow!=3}}' src='../../images/remain3.png'></image>
+    <image hidden='{{imgshow!=2}}' src='../../images/remain2.png'></image>
+    <image hidden='{{imgshow!=1}}' src='../../images/remain1.png'></image>
+    <image hidden='{{imgshow!=0}}' src='../../images/approved.png'></image>
     <text class='success'>{{auditInfo.info}}</text>
   </view>
   <view class='warm_info'>
