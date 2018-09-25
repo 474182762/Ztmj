@@ -53,10 +53,13 @@
           <input name="followerNumber" type="number" placeholder="请输入随行人数，最多不超过4人" />
         </view>
         
-          <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
-            <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='4'></image>
-            <image src='{{item}}' wx:for="{{visitorImg}}"></image>
+        <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
+          <view wx:if="{{visitorImg.length}}" wx:for="{{visitorImg}}" class='img_warp' bindtap='showPicdel' data-index="{{index}}" wx:key="index">
+            <image src='../../images/pic_del.png' class='pic_del' catchtap='delUpimg' data-key="{{index}}" hidden='{{!item.state}}'></image>
+            <image src='{{item.imgSrc}}' ></image>
           </view>
+          <image hidden="{{upBtnHidden}}" class='up_btn_img' src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='5'></image>
+        </view>
          <view class='btn_warp'><button formType="submit" class='data_btn'>申请认证</button></view>
       </form>
   </view>
@@ -93,10 +96,12 @@
         </view>
        
         <view class='user_img up_img' wx:if='{{identityId==4||identityId==2}}'>
-          <image hidden="{{upBtnHidden}}" src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='5'></image>
-          <image src='{{item}}' wx:for="{{visitorImg}}"></image>
+          <view wx:if="{{visitorImg.length}}" wx:for="{{visitorImg}}" class='img_warp' bindtap='showPicdel' data-index="{{index}}" wx:key="index">
+            <image src='../../images/pic_del.png' class='pic_del' catchtap='delUpimg' data-key="{{index}}" hidden='{{!item.state}}'></image>
+            <image src='{{item.imgSrc}}' ></image>
+          </view>
+          <image hidden="{{upBtnHidden}}" class='up_btn_img' src='../../images/avatar2.png' bindtap='upImage' data-maxImg ='5'></image>
         </view>
-
         <view class='btn_warp'><button formType="submit" class='data_btn'>申请认证</button></view>
     </form>
   </view>

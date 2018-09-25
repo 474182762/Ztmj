@@ -142,7 +142,7 @@ Page({
         if (res.confirm) {
           console.log(11)
           let data = {};
-          data['userId'] = app.globalData.userInfo.userId
+          data['userId'] = wx.getStorageSync("userInfo").userId
           console.log(data)
           app.api.changeEscort(data).then((res) => {
             if (res.code == '200') {
@@ -171,8 +171,8 @@ Page({
   },
   /*医生申请帮助*/
   docutorVisitor() {
-    console.log(app.globalData.userInfo)
-    if (app.globalData.userInfo.staff.staffPostName==3){
+    console.log(wx.getStorageSync("userInfo"))
+    if (wx.getStorageSync("userInfo").staff.staffPostName==3){
       wx.navigateTo({
         url: "/pages/ambuHelp/index"
       })

@@ -79,12 +79,35 @@
   margin-top:30rpx;
   /* background-color:#f1f0f5;  */
   border-bottom:none;
+  display: -webkit-box;
+  display: -webkit-flex;
+  flex-wrap: wrap;
 }
-.approve .up_img image{
+.approve .up_img .img_warp{
+  position: relative;
   width: 150rpx;
   height: 150rpx;
   border-bottom: none;
   margin-right: 30rpx;
+  margin-bottom: 10rpx;
+  
+}
+.approve .up_img .img_warp image{
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+.approve .up_img .img_warp .pic_del{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 0rpx;
+
+}
+.approve .up_img .up_btn_img{
+  width: 150rpx;
+  height: 150rpx;
+  margin-bottom: 10rpx;
 }
 .approve .up_img image:last-child{
   margin-right: 0;

@@ -76,6 +76,44 @@ Page({
       expressSelect: e.detail.value
     })
   },
+  /*点击显示删除图片按钮*/
+  showPicdel(e){
+    let This = this
+    let visitorImg = This.data.visitorImg;
+
+    visitorImg[e.currentTarget.dataset.index].state=true
+    
+    This.setData({
+      visitorImg
+    })
+  },
+    /*删除上传图片*/
+  delUpimg(e){
+    console.log(e.currentTarget.dataset.key)
+    let This = this
+    let visitorImg = This.data.visitorImg;
+    let selectaccompany = This.data.selectaccompany;
+    visitorImg.splice(e.currentTarget.dataset.key,1)
+    if (visitorImg.length){
+      This.setData({
+        visitorImg
+      })
+    }else{
+      This.setData({
+        visitorImg,
+        upBtnHidden:false
+      })
+    }
+    if (selectaccompany==1){
+      if (visitorImg.length<5){
+        This.setData({
+            visitorImg,
+            upBtnHidden: false
+        })
+      }
+    }
+    
+  },
   /*点击上传图片*/
   upImage(e){
     let This = this;
@@ -129,7 +167,10 @@ Page({
                   if (This.data.identityId == 2 || This.data.identityId == 4){
                     if (This.data.selectaccompany == 2) {
                       let visitorImg = This.data.visitorImg;
-                      visitorImg.push(data.data.filePath)
+                      visitorImg.push({
+                        imgSrc: data.data.filePath,
+                        state:false
+                      })
                       This.setData({
                         visitorImg: visitorImg,
                         upImgStatu: true,
@@ -144,7 +185,10 @@ Page({
                   }
                 }else{
                   let visitorImg = This.data.visitorImg;
-                  visitorImg.push(data.data.filePath)
+                  visitorImg.push({
+                    imgSrc: data.data.filePath,
+                    state: false
+                  })
                     This.setData({
                       visitorImg: visitorImg,
                       upImgStatu: true
@@ -224,12 +268,18 @@ Page({
   formNopatientSubmit(e){
     let This = this;
     let data = null;
+    let pictureList = [];
     data = e.detail.value;
     data['type'] = 1;
     data['patientFollower'] = This.data.selectaccompany;
-    data['facePicture'] = This.data.visitorImg
+    
     data['openid'] = app.globalData.openid
+    This.data.visitorImg.forEach((item,index) => {
+      pictureList.push(item.imgSrc)
+    })
+    data['facePicture'] = pictureList
     console.log(data)
+   
     let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!data.userName) {
       wx.showToast({
@@ -280,7 +330,8 @@ Page({
         })
         return
       }
-      if (data.facePicture.length - 1 != data.followerNumber) {
+      console.log(data.facePicture.length, data.followerNumber)
+      if (data.facePicture.length!= data.followerNumber) {
         wx.showToast({
           title: '请上传患者和随行人数头像',
           icon: 'none',
@@ -470,10 +521,14 @@ Page({
   formvisitorSubmit(e){
     let This = this;
     let data = null;
+    let pictureList =[]
     data = e.detail.value;
     data['patientFollower'] = This.data.selectaccompany;
-    data['facePicture'] = This.data.visitorImg
+    This.data.visitorImg.forEach((item, index) => {
+      pictureList.push(item.imgSrc)
+    })
     data['openid'] = app.globalData.openid;
+    data['facePicture'] = pictureList
     console.log(data)
     let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!data.patientsName) {
