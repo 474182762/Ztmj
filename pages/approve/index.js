@@ -100,6 +100,7 @@ Page({
   upSaveImage(index, maxImg){
     let This =this;
     let type = index == 0?'camera':'album';
+    console.log(maxImg)
     wx.chooseImage({
       count: maxImg,
       sourceType: [type], 
@@ -262,16 +263,15 @@ Page({
       })
       return
     }
+    if (!This.data.upImgStatu) {
+      wx.showToast({
+        title: '请上传头像',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     if (data.patientFollower==1){
-
-      if (!This.data.upImgStatu) {
-        wx.showToast({
-          title: '请上传头像',
-          icon: 'none',
-          duration: 2000
-        })
-        return
-      }
       if (data.facePicture.length > 5) {
         wx.showToast({
           title: '最多上传5张',

@@ -64,12 +64,16 @@ Page({
   },
   /*查询用户信息*/
   searchUserInfo(openid){
+    let This = this;
     let data={
       openid:openid
     }
     app.api.getUserinfo(data).then((res) => {
         if(!res.data.length){
           wx.removeStorageSync("userInfo")
+          This.setData({
+            firstEnter: true,
+          })
         }
     })
   },
@@ -81,7 +85,7 @@ Page({
       user['userImg'] = '../../images/identify4.png'
       user['name'] = wx.getStorageSync("userInfo").userName;
       if (wx.getStorageSync("userInfo").roleType == 3) {
-        console.log(app.globalData.userInfo.staff.staffPostName)
+        console.log(wx.getStorageSync("userInfo").staff.staffPostName)
         if (wx.getStorageSync("userInfo").staff.staffPostName == 1) {
           user['identity'] = '医生'
         } else if (wx.getStorageSync("userInfo").staff.staffPostName == 2) {
