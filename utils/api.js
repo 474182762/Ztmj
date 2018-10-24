@@ -57,7 +57,7 @@ const patientSubmit = (params) => {
   let header = {
     "Content-Type": "application/x-www-form-urlencoded"
   };
-  return fetchApi('authentication/patient', params, header).then(res => res)
+  return fetchApi('/authentication/nopatient', params, header).then(res => res)
 };
 
 /*非住院患者*/

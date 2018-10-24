@@ -22,15 +22,15 @@
     <text class='user_identity'>身份：{{user.identity}}</text>
     <!-- <text class='user_identity user_time'wx-if='{{user.id==2||user.id==7}}'>通行时间：{{user.expiryTime}}</text> -->
   </view>
-  <view class='user_limit' wx:if ='{{user.id==1||user.id==4}}'>
+  <view class='user_limit' wx:if ='{{user.id==1&&user.type==1}}'>
     <view class='list' >
       <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>
     </view>
-    <view class='list' >
+    <!-- <view class='list' >
       <image src='../../images/catalog4.png' bindtap='enterPass'></image>
       <text>通行申请</text>
-    </view>
+    </view> -->
     <view class='list'>
       <image src='../../images/catalog3.png' bindtap='enterChaperone'></image>
       <text>更换陪护</text>
@@ -50,7 +50,7 @@
       <text>访客+</text>
     </view>
   </view>
-  <view class='user_limit' wx:if ='{{user.id==2||user.id==6||user.id==5}}'>
+  <view class='user_limit' wx:if ='{{user.id==2||user.id==6||user.id==5||user.type==2||user.id==4}}'>
     <view class='list'>
       <image src='../../images/catalog1.png' bindtap='enterQrcode'></image>
       <text>二维码</text>

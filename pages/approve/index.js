@@ -18,6 +18,14 @@ Page({
       { name: '2', value: '护士' },
       { name: '3', value: '安保人员' },
     ],
+    patientType: [
+      { name: '1', value: '住院患者', checked: 'true' },
+      { name: '2', value: '门诊患者' }
+    ],
+    genderType: [
+      { name: '1', value: '男', checked: 'true' },
+      { name: '2', value: '女' }
+    ],
     expressType: [
       { name: '1', value: '临时进入', checked: 'true' },
       { name: '2', value: '长期合作' }
@@ -29,6 +37,8 @@ Page({
     visitorImg:[],
     upBtnHidden:false,
     expressSelect:1,
+    patientSelect:1,
+    genderSelect: 1,
     patientdata:{
       username:'',
       userPhone:'',
@@ -74,6 +84,18 @@ Page({
     let This = this;
     This.setData({
       expressSelect: e.detail.value
+    })
+  },
+  patientChange(e){
+    let This = this;
+    This.setData({
+      patientSelect: e.detail.value
+    })
+  },
+  genderChange(){
+    let This = this;
+    This.setData({
+      genderSelect: e.detail.value
     })
   },
   /*点击显示删除图片按钮*/
@@ -218,9 +240,10 @@ Page({
     let This = this;
     let data =null;
     data = e.detail.value
-    data['type']=1
+    data['type'] = This.data.patientSelect
     data['facePicture'] = This.data.userImg
     data['openid'] = app.globalData.openid
+    data['gender'] = This.data.genderSelect
     console.log(data)
     let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
     if (!data.userName){
@@ -239,7 +262,7 @@ Page({
       })
       return
     }
-    if (!data.patientOrder){
+    if (!data.checkNumber){
       wx.showToast({
         title: '住院单号错误',
         icon: 'none',
@@ -261,6 +284,12 @@ Page({
           url: "/pages/audit/index"
         })
         wx.setStorageSync('userInfo', res.data.userInfo || '');
+      }else{
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
+        })
       }
     })
   },
@@ -382,7 +411,7 @@ Page({
       })
       return
     }
-    if (!data.patientRingId) {
+    if (!data.checkNumber) {
       wx.showToast({
         title: '请输入患者手环ID',
         icon: 'none',
@@ -404,7 +433,11 @@ Page({
         wx.navigateTo({
           url: "/pages/audit/index"
         })
-      }
+      } wx.showToast({
+        title: res.message,
+        icon: 'none',
+        duration: 2000
+      })
     })
   },
   /*工作人员认证*/
@@ -606,6 +639,12 @@ Page({
         wx.setStorageSync('userInfo', res.data.userInfo || '');
         wx.navigateTo({
           url: "/pages/audit/index"
+        })
+      }else {
+        wx.showToast({
+          title: res.message,
+          icon: 'none',
+          duration: 2000
         })
       }
     })

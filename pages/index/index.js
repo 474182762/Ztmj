@@ -9,12 +9,12 @@ Page({
     userInfo:{},
     //身份列表
     identityList:[
-        { imgUrl: '../../images/identify2.png', 'identity': '住院患者','id':1 },
+        { imgUrl: '../../images/identify2.png', 'identity': '患者','id':1 },
         { imgUrl: '../../images/identify7.png', 'identity': '访客', 'id': 2  },
-        { imgUrl: '../../images/identify1.png', 'identity': '医生/护士', 'id': 3  },
-        { imgUrl: '../../images/identify3.png', 'identity': '非住院患者','id': 4 },
+        // { imgUrl: '../../images/identify1.png', 'identity': '医生/护士', 'id': 3  },
+        // { imgUrl: '../../images/identify3.png', 'identity': '非住院患者','id': 4 },
         { imgUrl: '../../images/identify5.png', 'identity': '护工','id': 5},
-        { imgUrl: '../../images/identify6.png', 'identity': '快递/外卖员', 'id': 6}
+        // { imgUrl: '../../images/identify6.png', 'identity': '快递/外卖员', 'id': 6}
       ],
     motto: 'Hello World',
     user: {
@@ -85,7 +85,7 @@ Page({
       user['userImg'] = '../../images/identify4.png'
       user['name'] = wx.getStorageSync("userInfo").userName;
       if (wx.getStorageSync("userInfo").roleType == 3) {
-        console.log(wx.getStorageSync("userInfo").staff.staffPostName)
+       
         if (wx.getStorageSync("userInfo").staff.staffPostName == 1) {
           user['identity'] = '医生'
         } else if (wx.getStorageSync("userInfo").staff.staffPostName == 2) {
@@ -97,11 +97,13 @@ Page({
         user['identity'] = wx.getStorageSync("userInfo").roleName
       }
       user['id'] = wx.getStorageSync("userInfo").roleType
+      user['type'] = wx.getStorageSync("userInfo").type
       user['expiryTime'] = formatDateTime(wx.getStorageSync("userInfo").expiryTime)
       This.setData({
         firstEnter: false,
         user: user
       })
+      console.log(This.data.user)
       return;
     }
 
